@@ -47,8 +47,8 @@ function logout() {
 }
 
 // ==== ESPHome WebSocket Integration ====
-const HA_URL = "homeassistant.tail41a295.ts.net";
-const HA_TOKEN = "TQ3NSwiZXhwIjoyMDc0NjQ5NDc1fQ.Ff_nOsZJF1j_QBbuha5T2ARPOCqQJVCQzNQKZ2a_ttg";
+const HA_URL = "ADDRESS";
+const HA_TOKEN = "KEY";
 
 const ENTITIES = {
   pump: "switch.valve_control_submersible_pump",
@@ -280,5 +280,6 @@ function setup(){
   connectToHomeAssistant();
 }
 setup();
+
 
 
