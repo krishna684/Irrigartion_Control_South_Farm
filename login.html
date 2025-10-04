@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Login - Farm Control System</title>
+
+<!-- Tailwind + Professional Fonts -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900&family=Roboto+Slab:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'mizzou-black': '#000000',
+          'mizzou-gold': '#F1B82D',
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+body {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #cfeccf 0%, #a8d8a8 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-title {
+  font-family: 'Roboto Slab', Georgia, serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-subtitle {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.password-input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: monospace;
+  letter-spacing: 2px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.password-input:focus {
+  border-color: #F1B82D;
+  box-shadow: 0 0 20px rgba(241, 184, 45, 0.3);
+}
+
+.login-button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #F1B82D 0%, #e6a821 100%);
+  border: none;
+  border-radius: 15px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(241, 184, 45, 0.3);
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(241, 184, 45, 0.4);
+}
+
+.error-message {
+  color: #ff4444;
+  font-size: 14px;
+  margin-top: 15px;
+  background: rgba(255, 68, 68, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 68, 68, 0.2);
+}
+
+.university-logo {
+  font-size: 48px;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+</style>
+</head>
+<body>
+
+<div class="login-container">
+  <div class="university-logo">🌾</div>
+  <h1 class="login-title">South Farm Research Center</h1>
+  <p class="login-subtitle">Specialty Crops Drip Irrigation System</p>
+  
+  <form id="loginForm">
+    <input 
+      type="password" 
+      id="passwordInput" 
+      class="password-input" 
+      placeholder="Enter Password"
+      required
+    >
+    <button type="submit" class="login-button">
+      Access Control System
+    </button>
+  </form>
+  
+  <div id="errorMessage" class="error-message" style="display: none;">
+    Incorrect password. Please try again.
+  </div>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const password = document.getElementById('passwordInput').value;
+  const errorMessage = document.getElementById('errorMessage');
+  
+  if (password === '202404') {
+    // Set login session
+    sessionStorage.setItem('farmControlLoggedIn', 'true');
+    // Redirect to main page
+    window.location.href = 'index.html';
+  } else {
+    // Show error message
+    errorMessage.style.display = 'block';
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('passwordInput').focus();
+    
+    // Hide error after 3 seconds
+    setTimeout(() => {
+      errorMessage.style.display = 'none';
+    }, 3000);
+  }
+});
+
+// Focus on password input when page loads
+window.addEventListener('load', () => {
+  document.getElementById('passwordInput').focus();
+});
+</script>
+
+</body>
+</html>

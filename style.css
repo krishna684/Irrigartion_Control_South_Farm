@@ -1,0 +1,698 @@
+:root {
+  --off-hue: 30;
+  --on-hue1: 123;
+  --trans-dur: 0.4s;
+}
+
+body {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background:#cfeccf;
+  margin:0;
+  padding: 20px 0;
+}
+
+.scene {
+  max-width:900px;
+  margin:20px auto;
+  padding:10px;
+  background:#d9f5d9;
+  border-radius:12px;
+  positi.coming-soon-component {
+  color: #ffffff;
+  font-family: 'Roboto Slab', Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+}
+
+.coming-soon-text {
+  color: #F1B82D;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  margin-bottom: 5px;
+  letter-spacing: 0.3px;
+}
+
+.coming-soon-icon {
+  font-size: 20px;
+  animation: pulse 2s ease-in-out infinite;
+}}
+
+.grid {
+  display:grid;
+  gap:16px;
+  grid-template-areas:
+    "motor motor"
+    "shed shed"
+    "r1 r2"
+    "r3 r4"
+    "r5 r6"
+    "s1 s2";
+  grid-template-columns:1fr 1fr;
+}
+
+/* Motor stack */
+.motor-stack {
+  grid-area:motor;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+/* Tank */
+.tank {
+  background:#3a6ea5;
+  color:white;
+  width:120px;
+  height:160px;
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:center;
+  padding:10px;
+}
+.tank .level {font-size:16px;font-weight:bold;}
+.tank-label {margin-top:6px;}
+
+/* Pump */
+.motor {
+  background:#444;
+  color:white;
+  border-radius:50%;
+  width:160px;
+  height:160px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.motor-label {margin-top:6px;font-weight:bold;}
+
+/* Flowmeter */
+.flowmeter {
+  background:#222;
+  color:white;
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
+}
+.flowmeter .value {font-size:20px;font-weight:bold;}
+.flowmeter-label {margin-top:6px;font-size:14px;}
+
+/* Shed */
+.shed {
+  grid-area:shed;
+  justify-self:center;
+  background:#b0413e;
+  color:white;
+  padding:10px;
+  border-radius:8px;
+  text-align:center;
+}
+
+/* Row */
+.row {
+  background:#8B5E3C;
+  color:white;
+  border-radius:10px;
+  padding:10px;
+  position:relative;
+  overflow:hidden;
+}
+.row-title {display:flex;justify-content:space-between;align-items:center;}
+.plants,.subrow{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;position:relative;}
+.plant{font-size:20px;transition:transform 0.3s, filter 0.3s;}
+.plant.watered{transform:scale(1.2);filter:brightness(1.6) saturate(1.6);}
+.subrows{display:grid;gap:4px;}
+.subrow{background:#a8734e;border-radius:6px;padding:4px;}
+
+/* Professional Pressure Gauges */
+.pressure-gauge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  gap: 10px;
+}
+
+.pressure-gauge {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  background: #2c3e50;
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  border: 3px solid #1a252f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-face {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at center, #34495e 0%, #2c3e50 70%, #1a252f 100%);
+  border: 1px solid #4a6741;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Removed .gauge-marks as we're using individual markings now */
+
+/* Simple gauge ring for visual appeal */
+.gauge-ring {
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(241, 184, 45, 0.3);
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 0 10px rgba(241, 184, 45, 0.1),
+    0 0 5px rgba(241, 184, 45, 0.2);
+}
+
+.gauge-needle {
+  position: absolute;
+  width: 4px;
+  height: 55px;
+  background: linear-gradient(to bottom, #ff6b6b, #e74c3c);
+  top: 25px;
+  left: 50%;
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(-135deg);
+  transition: transform 0.5s ease;
+  border-radius: 2px;
+  z-index: 4;
+  box-shadow: 0 0 3px rgba(231, 76, 60, 0.6);
+}
+
+.gauge-center {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #ecf0f1;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #34495e;
+  z-index: 3;
+}
+
+.gauge-value {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #F1B82D;
+  font-family: 'Roboto Slab', Georgia, serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid #F1B82D;
+  z-index: 5;
+  min-width: 45px;
+  text-align: center;
+}
+
+.gauge-title {
+  color: #2c3e50;
+  font-family: 'Roboto Slab', Georgia, serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* Switch/Valve Styles */
+.switch {
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  position:relative;
+  width:5em;
+  height:3em;
+}
+
+.switch__base-outer, .switch__base-inner { position:absolute; }
+
+.switch__base-outer {
+  border-radius:1.25em;
+  background:hsl(30,30%,40%);
+  width:100%;
+  height:100%;
+}
+
+.switch__base-inner {
+  border-radius:1.125em;
+  background:hsl(30,30%,30%);
+  top:.25em;
+  left:.25em;
+  width:4.5em;
+  height:2.5em;
+}
+
+.switch__input {
+  width:100%;
+  height:100%;
+  appearance:none;
+  position:absolute;
+  inset:0;
+  cursor:pointer;
+}
+
+.switch__knob {
+  background:hsl(30,30%,20%);
+  border-radius:50%;
+  width:2em;
+  height:2em;
+  position:absolute;
+  top:.5em;
+  left:.5em;
+  transition:transform 0.4s, background 0.4s;
+}
+
+.switch__led {
+  position:absolute;
+  top:.25em;
+  left:.25em;
+  width:.5em;
+  height:.5em;
+  border-radius:50%;
+  background:hsl(30,70%,60%);
+  transition:background 0.4s;
+}
+
+.switch__input:checked ~ .switch__knob {
+  transform:translateX(2em);
+  background:hsl(123,60%,40%);
+}
+
+.switch__input:checked ~ .switch__led {
+  background:hsl(123,70%,55%);
+}
+
+.switch-label {
+  font-size:12px;
+  color:#fff;
+}
+
+/* Glassmorphism Header Styling - Single Line */
+.specialty-crops-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 15px 25px;
+  
+  /* Glassmorphism Effect */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  
+  /* Glass Shadow & Glow */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  
+  /* Subtle gradient overlay */
+  position: relative;
+  overflow: hidden;
+}
+
+.specialty-crops-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(241, 184, 45, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(30, 144, 255, 0.1) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.header-icon {
+  font-size: 28px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.specialty-crops-title {
+  font-family: 'Roboto Slab', Georgia, serif;
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #000 0%, #333 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+.header-separator {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+  font-weight: 300;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.header-subtitle {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+@keyframes floatIcon {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  33% { 
+    transform: translateY(-4px) rotate(2deg); 
+  }
+  66% { 
+    transform: translateY(-2px) rotate(-1deg); 
+  }
+}
+
+/* Professional Typography */
+h1, h2, h3, .row-title, .tank-label, .motor-label, .flowmeter-label, .gauge-label {
+  font-family: 'Roboto Slab', Georgia, serif;
+  font-weight: 500;
+}
+
+/* Navbar professional styling */
+nav {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Switch labels professional styling */
+.switch-label {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Coming Soon Overlay Styling */
+.coming-soon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.coming-soon-component {
+  color: #ffffff;
+  font-family: 'Roboto Slab', Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 1),
+    0 0 8px rgba(255, 255, 255, 0.3);
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.coming-soon-text {
+  color: #F1B82D;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  margin-bottom: 5px;
+  letter-spacing: 0.3px;
+}
+
+.coming-soon-icon {
+  font-size: 20px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Ensure tank and flowmeter have relative positioning */
+.tank, .flowmeter {
+  position: relative;
+}
+
+/* Color Wave System - No Alignment Issues */
+.water-flowing {
+  background: linear-gradient(45deg, #4a90e2, #1e90ff, #00bfff);
+  background-size: 400% 400%;
+  animation: waterWave 2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(30, 144, 255, 0.5);
+  border: 2px solid #1e90ff;
+}
+
+@keyframes waterWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Tank water flow effect */
+.tank.water-flowing {
+  background: linear-gradient(45deg, #4a90e2, #1e90ff, #00bfff);
+  background-size: 400% 400%;
+  animation: waterWave 2s ease-in-out infinite;
+}
+
+/* Motor/Pump water flow effect */
+.motor.water-flowing {
+  background: linear-gradient(45deg, #1e90ff, #00bfff, #4a90e2);
+  background-size: 400% 400%;
+  animation: waterWave 1.5s ease-in-out infinite;
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Flowmeter water flow effect */
+.flowmeter.water-flowing {
+  background: linear-gradient(45deg, #00bfff, #1e90ff, #4a90e2);
+  background-size: 400% 400%;
+  animation: waterWave 1.8s ease-in-out infinite;
+}
+
+/* Row water flow effect */
+.row.water-flowing, .shed.water-flowing {
+  background: linear-gradient(45deg, #2e8b57, #00ff7f, #98fb98);
+  background-size: 400% 400%;
+  animation: waterWave 2.5s ease-in-out infinite;
+}
+
+/* Sequential wave delay for realistic flow */
+.tank.water-flowing {
+  animation-delay: 0s;
+}
+
+.motor.water-flowing {
+  animation-delay: 0.3s;
+}
+
+.flowmeter.water-flowing {
+  animation-delay: 0.6s;
+}
+
+.row.water-flowing, .shed.water-flowing {
+  animation-delay: 0.9s;
+}
+
+
+
+/* Water flow animation */
+.water-flow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(135, 206, 250, 0.8) 25%,
+    rgba(30, 144, 255, 0.9) 50%,
+    rgba(135, 206, 250, 0.8) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Vertical flow animation */
+.pipe-line.vertical .water-flow {
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    rgba(135, 206, 250, 0.8) 25%,
+    rgba(30, 144, 255, 0.9) 50%,
+    rgba(135, 206, 250, 0.8) 75%,
+    transparent 100%
+  );
+  background-size: 100% 200%;
+}
+
+/* Active water flow */
+.pipe-line.flowing .water-flow {
+  opacity: 1;
+  animation: waterFlow 2s linear infinite;
+}
+
+.pipe-line.vertical.flowing .water-flow {
+  animation: waterFlowVertical 2s linear infinite;
+}
+
+@keyframes waterFlow {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes waterFlowVertical {
+  0% { background-position: 0 -200%; }
+  100% { background-position: 0 200%; }
+}
+
+/* Pipe glow effect when active */
+.pipe-line.flowing {
+  box-shadow: 
+    inset 0 2px 4px rgba(0,0,0,0.3), 
+    0 2px 8px rgba(74,144,226,0.3),
+    0 0 20px rgba(30, 144, 255, 0.6),
+    0 0 40px rgba(30, 144, 255, 0.3);
+  border-color: #1e90ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pipe-line.branch {
+    width: 10px;
+    height: 120px;
+  }
+  
+  #tank-pump-pipe {
+    width: 14px;
+  }
+  
+  #main-distribution-pipe {
+    height: 14px;
+  }
+}
+
+/* Water Drop and Sparkle Animations */
+.drop {
+  position: absolute;
+  font-size: 16px;
+  pointer-events: none;
+  animation: dropFall 2s linear infinite;
+  z-index: 10;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 14px;
+  pointer-events: none;
+  animation: sparkleFloat 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+@keyframes dropFall {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50px) scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkleFloat {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(-10px) scale(1.2) rotate(90deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-5px) scale(0.9) rotate(180deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(-15px) scale(1.1) rotate(270deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(360deg);
+    opacity: 0.8;
+  }
+}

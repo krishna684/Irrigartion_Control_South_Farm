@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Farm with Water Drops + Gauges</title>
+
+<!-- Tailwind + Professional Fonts -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900&family=Roboto+Slab:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'mizzou-black': '#000000',
+          'mizzou-gold': '#F1B82D',
+        },
+      }
+    }
+  }
+</script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="mx-auto max-w-5xl w-[95%] p-4 md:p-5 mb-6
+            bg-mizzou-gold text-mizzou-black
+            rounded-3xl shadow-2xl shadow-black/50
+            flex justify-between items-center">
+  <div class="text-xl md:text-2xl font-extrabold tracking-tight uppercase">
+    South Farm Research Center
+  </div>
+  <button onclick="logout()" class="px-5 py-2.5 bg-mizzou-black hover:bg-gray-800
+                 text-mizzou-gold font-semibold text-sm md:text-base
+                 rounded-2xl transition-colors duration-200
+                 shadow-md hover:shadow-lg">
+    Logout
+  </button>
+</nav>
+
+<!-- Main Scene -->
+<div class="scene" id="scene">
+  
+
+  <div class="grid">
+
+    <!-- Tank + Pump + Flowmeter (stacked center) -->
+    <div class="motor-stack">
+      <!-- Specialty Crops Heading -->
+      <div class="specialty-crops-header">
+        <div class="header-icon">🌾</div>
+        <h1 class="specialty-crops-title">Specialty Crops</h1>
+        <span class="header-separator">|</span>
+        <div class="header-subtitle">Drip Irrigation Project</div>
+      </div>
+      
+      <!-- Tank -->
+      <div class="tank" id="tank">
+        <div class="coming-soon-overlay">
+          <div class="coming-soon-text">Tank | Coming Soon</div>
+          <div class="coming-soon-icon">🚧</div>
+        </div>
+        <div class="level">Empty</div>
+        <div class="tank-label">Tank</div>
+      </div>
+
+      <!-- Pump -->
+      <div class="motor" id="motor">
+        <div class="motor-label">Pump</div>
+        <div>💧</div>
+        <label class="switch">
+          <input class="switch__input" id="mainPump" type="checkbox">
+          <span class="switch__base-outer"></span>
+          <span class="switch__base-inner"></span>
+          <span class="switch__knob"></span>
+          <span class="switch__led"></span>
+          <div class="switch-label">Pump</div>
+        </label>
+      </div>
+
+      <!-- Flowmeter -->
+      <div class="flowmeter" id="flowmeter">
+        <div class="coming-soon-overlay">
+          <div class="coming-soon-text">Flowmeter | Coming Soon</div>
+          <div class="coming-soon-icon">🚧</div>
+        </div>
+        <div class="value">0 L/min</div>
+        <div class="flowmeter-label">Flowmeter</div>
+      </div>
+    </div>
+
+    <!-- Shed -->
+    <div class="shed" id="shed">
+      <h2>Turkey Shed 🦃</h2>
+      <div id="shed-plants" class="plants"></div>
+      <label class="switch">
+        <input class="switch__input" type="checkbox">
+        <span class="switch__base-outer"></span>
+        <span class="switch__base-inner"></span>
+        <span class="switch__knob"></span>
+        <span class="switch__led"></span>
+        <div class="switch-label">Valve</div>
+      </label>
+    </div>
+
+    <!-- Rows -->
+    <div class="row" id="row1"><div class="row-title"><span>Section 1 - Mums 🌸</span>
+      <label class="switch"><input class="switch__input" type="checkbox"><span class="switch__base-outer"></span><span class="switch__base-inner"></span><span class="switch__knob"></span><span class="switch__led"></span><div class="switch-label">Valve</div></label></div>
+      <div id="plants1" class="plants"></div>
+    </div>
+    <div class="row" id="row2"><div class="row-title"><span>Section 2 - Cut Flowers and Herbs 💐</span>
+      <label class="switch"><input class="switch__input" type="checkbox"><span class="switch__base-outer"></span><span class="switch__base-inner"></span><span class="switch__knob"></span><span class="switch__led"></span><div class="switch-label">Valve</div></label></div>
+      <div id="plants2" class="plants"></div>
+    </div>
+    <div class="row" id="row3"><div class="row-title"><span>Section 3 - Vegetables (Treatment A)</span>
+      <label class="switch"><input class="switch__input" type="checkbox"><span class="switch__base-outer"></span><span class="switch__base-inner"></span><span class="switch__knob"></span><span class="switch__led"></span><div class="switch-label">Valve</div></label></div>
+      <div class="subrows"><div id="plants3a" class="subrow"></div><div id="plants3b" class="subrow"></div><div id="plants3c" class="subrow"></div><div id="plants3d" class="subrow"></div></div>
+    </div>
+    <div class="row" id="row4"><div class="row-title"><span>Section 4 - Vegetables (Treatment B)</span>
+      <label class="switch"><input class="switch__input" type="checkbox"><span class="switch__base-outer"></span><span class="switch__base-inner"></span><span class="switch__knob"></span><span class="switch__led"></span><div class="switch-label">Valve</div></label></div>
+      <div class="subrows"><div id="plants4a" class="subrow"></div><div id="plants4b" class="subrow"></div><div id="plants4c" class="subrow"></div><div id="plants4d" class="subrow"></div></div>
+    </div>
+    <div class="row" id="row5"><div class="row-title"><span>Section 5 - Vegetables (Treatment B)</span>
+      <label class="switch"><input class="switch__input" type="checkbox"><span class="switch__base-outer"></span><span class="switch__base-inner"></span><span class="switch__knob"></span><span class="switch__led"></span><div class="switch-label">Valve</div></label></div>
+      <div class="subrows"><div id="plants5a" class="subrow"></div><div id="plants5b" class="subrow"></div><div id="plants5c" class="subrow"></div><div id="plants5d" class="subrow"></div></div>
+    </div>
+    <div class="row" id="row6"><div class="row-title"><span>Section 6 - Vegetables (Treatment A)</span>
+      <label class="switch"><input class="switch__input" type="checkbox"><span class="switch__base-outer"></span><span class="switch__base-inner"></span><span class="switch__knob"></span><span class="switch__led"></span><div class="switch-label">Valve</div></label></div>
+      <div class="subrows"><div id="plants6a" class="subrow"></div><div id="plants6b" class="subrow"></div><div id="plants6c" class="subrow"></div><div id="plants6d" class="subrow"></div></div>
+    </div>
+
+    <!-- Gauges -->
+    <div class="pressure-gauge-container" id="sensor1" style="grid-area:s1;">
+      <div class="pressure-gauge">
+        <div class="gauge-face">
+          <!-- Simple gauge ring for visual appeal -->
+          <div class="gauge-ring"></div>
+          <div class="gauge-needle" id="needle1"></div>
+          <div class="gauge-center"></div>
+        </div>
+        <div class="gauge-value" id="value1">0 PSI</div>
+      </div>
+      <div class="gauge-title">Water Pressure 1</div>
+    </div>
+    <div class="pressure-gauge-container" id="sensor2" style="grid-area:s2;">
+      <div class="pressure-gauge">
+        <div class="gauge-face">
+          <!-- Simple gauge ring for visual appeal -->
+          <div class="gauge-ring"></div>
+          <div class="gauge-needle" id="needle2"></div>
+          <div class="gauge-center"></div>
+        </div>
+        <div class="gauge-value" id="value2">0 PSI</div>
+      </div>
+      <div class="gauge-title">Water Pressure 2</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Check if user is logged in before loading the main application
+if (!sessionStorage.getItem('farmControlLoggedIn')) {
+  window.location.href = 'login.html';
+}
+</script>
+<script src="script.js"></script>
+</body>
+</html>
